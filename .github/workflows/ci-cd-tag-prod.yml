@@ -44,29 +44,18 @@ jobs:
           rm -f .gitignore
           rm -f tailwind.config.js
 
-      - name: Creating a new GitHub tag 🤖
+      - name: Creating a new GitHub branch release 🤖
         run: |
           TAG_VERSION=$(bash .github/tag.sh)
-          rm -r -f .github/
+
+          git checkout -b build/branch_release_v$TAG_VERSION
 
           git config --global user.email "matheus@aguia.dev"
           git config --global user.name "Matheus Aguiar"
 
           git add .
-          git commit -am "build: Building a new version"
+          git commit -am "build: building a new version"
 
-          git tag -a v$TAG_VERSION -m "New tag: v$TAG_VERSION"
-          git push origin v$TAG_VERSION
-
-          rm -r -f .git/
+          git push origin build/branch_release_v$TAG_VERSION
 
           echo "All right! 🍕"
-          
-      - name: WordPress Plugin Deploy 🌐
-        uses: nk-o/action-wordpress-plugin-deploy@master
-        env:
-          SVN_PASSWORD: ${{secrets.SVN_PASSWORD}}
-          SVN_USERNAME: ${{secrets.SVN_USERNAME}}
-          SOURCE_DIR: /
-          SLUG: wc-payment-links
-          ASSETS_DIR: assets

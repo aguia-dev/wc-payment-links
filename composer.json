@@ -1,6 +1,6 @@
 {
     "name": "devaguia/wc-payment-link",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "description": "Payment links for WooCommerce",
     "type": "wordpress-plugin",
     "license": "GPL-3.0",
