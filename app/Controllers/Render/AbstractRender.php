@@ -21,9 +21,7 @@ abstract class AbstractRender implements InterfaceRender
 
     private function enqueueDefault(): void
     {
-        if ($this->hasEnqueue) {
-            $this->enqueueStyles(['name' => 'tailwind', 'file' => 'styles/app.css']);
-        }
+        if ($this->hasEnqueue) {}
     }
 
     public function render(string $file, array $data): string

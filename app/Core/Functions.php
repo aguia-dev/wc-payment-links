@@ -15,7 +15,6 @@ class Functions
 
 		load_textdomain( wcplConfig()->pluginSlug(), wcplConfig()->dynamicDir() . "/languages/" . wcplConfig()->pluginSlug() . "-$locale.mo" );
 		load_plugin_textdomain( wcplConfig()->pluginSlug(), false, wcplConfig()->dynamicDir() . '/languages/' );
-
         load_plugin_textdomain(wcplConfig()->pluginSlug(), false);
     }
 
@@ -24,6 +23,13 @@ class Functions
         add_rewrite_rule('^pay/([^/]+)/?', 'index.php?token=$matches[1]', 'top');
         add_rewrite_tag('%token%', '([^&]+)');
         flush_rewrite_rules();
+    }
+
+    public function enqueueGlobalScripts(): void
+    {
+        if(isset($_REQUEST['page']) && $_REQUEST['page'] === 'wc-payment-links-links') {
+            wp_enqueue_style('tailwind-css', wcplConfig()->distUrl('styles/app.css'), [], wcplConfig()->pluginVersion());
+        }
     }
 
     public function createAdminMenu(): void

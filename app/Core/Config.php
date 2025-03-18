@@ -64,4 +64,9 @@ class Config
     {
         return 'wpl';
     }
+
+    public function pluginVersion(): string
+    {
+        return  '1.0.4';
+    }
 }
