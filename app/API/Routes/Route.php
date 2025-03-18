@@ -60,7 +60,7 @@ abstract class Route
 			if (isset($headers['authorization']) && is_array($headers['authorization'])) {
 				$auth = array_shift($headers['authorization']);
 				$basic = explode(':', base64_decode(str_replace('Basic ', '', $auth)));
-	
+
 				if (is_array($basic) && count($basic) === 2) {
 					$logged = wp_signon([
 						'user_login' => $basic[0],
@@ -70,9 +70,9 @@ abstract class Route
 			}
 
 			if (!$logged || is_wp_error($logged) || !in_array('administrator', $logged->roles)) {
-				throw new Exception(__('User not authorized! Please, contact the site adminstrator', 'wc-payment-link'));
+				throw new Exception(__('User not authorized! Please, contact the site adminstrator', 'wc-payment-links'));
 			}
-	
+
 
 		} catch (Throwable $t) {
 			$this->sendJsonResponse(

@@ -20,7 +20,7 @@ Easily share the URL to speed up sales and payments.
 Perfect for store owners looking to provide a seamless shopping experience, ensuring customers arrive at checkout with everything ready for payment.
 
 == Documentation ==
-[Access README.md on our official github](https://github.com/aguia-dev/wc-payment-link)
+[Access README.md on our official github](https://github.com/aguia-dev/wc-payment-links)
 
 = Requisitos =
 - PHP version 8.0 or higher.

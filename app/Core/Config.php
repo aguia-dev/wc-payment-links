@@ -47,12 +47,12 @@ class Config
 
     public function pluginName(): string
     {
-        return __('WC Payment Links', 'wc-payment-link');
+        return __('WC Payment Links', 'wc-payment-links');
     }
 
     public function pluginSlug(): string
     {
-        return 'wc-payment-link';
+        return 'wc-payment-links';
     }
 
     public function pluginNamespace(): string

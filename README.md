@@ -62,7 +62,7 @@ base64_encode(USER:PASSWORD)
 ### GET
 #### Endpoint: 
 ```
-https://{domain}/wp-json/wc-payment-link/links/?{id}
+https://{domain}/wp-json/wc-payment-links/links/?{id}
 ```
 
 Use the endpoint above to make a get request and search for the links registered on your website. You can also use the link ID as a parameter to search for a specific ID.
@@ -80,7 +80,7 @@ If necessary, it is possible to provide more information in the body of the requ
 ### POST
 #### Endpoint:
 ```
-https://{domain}/wp-json/wc-payment-link/links/
+https://{domain}/wp-json/wc-payment-links/links/
 ```
 Use o método POST para cadastrar novos links usando a REST API. Você vai precisar enviar os dados do link través do corpo da requisição: 
 ```JSON
@@ -101,7 +101,7 @@ Use o método POST para cadastrar novos links usando a REST API. Você vai preci
 ### PUT
 #### Endpoint:
 ```
-https://{domain}/wp-json/wc-payment-link/links/{id}
+https://{domain}/wp-json/wc-payment-links/links/{id}
 ```
 Use o método PUT para atualizar os links já cadastrados usando a REST API. Você vai precisar adiocioar o ID do link como parâmetro de URL e enviar os dados do link través do corpo da requisição:
 ```JSON
@@ -122,7 +122,7 @@ Use o método PUT para atualizar os links já cadastrados usando a REST API. Voc
 ### DELETE
 #### Endpoint:
 ```
-https://{domain}/wp-json/wc-payment-link/links/{id}
+https://{domain}/wp-json/wc-payment-links/links/{id}
 ```
 Use the DELETE method passing the id of the link you want to remove using the REST API.
 
@@ -209,6 +209,6 @@ Use the DELETE method passing the id of the link you want to remove using the RE
 ├── package.json
 ├── readme.txt
 ├── tailwind.config.js
-└── wc-payment-link.php
+└── wc-payment-links.php
 ```
 

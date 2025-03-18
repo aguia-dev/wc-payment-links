@@ -51,12 +51,12 @@ final class Links extends Route
 
             if ($id) {
                 $result = $linkRepository->findById($id);
-    
+
                 if ($result) {
                     $this->sendJsonResponse('', true, 200, $result->getData());
                 } else {
                     $this->sendJsonResponse(
-                        __('No link founded!', 'wc-payment-link'),
+                        __('No link founded!', 'wc-payment-links'),
                         false,
                         400,
                         ["id" => $id]
@@ -64,7 +64,7 @@ final class Links extends Route
                 }
             } else {
                 $result = $linkRepository->findAll($orderBy, $limit, $page, $order, true);
-    
+
                 if ($result) {
                     $this->sendJsonResponse('', true, 200, $this->formatLinks($result));
                 }
@@ -105,12 +105,12 @@ final class Links extends Route
 
             $repository = new LinkRepository();
             $result = $repository->save($link);
-            
+
             if ($result) {
                 $link->setId($result);
                 $link->saveProducts($params['products']);
 
-                $message = __('Link succefuly saved!', 'wc-payment-link');
+                $message = __('Link succefuly saved!', 'wc-payment-links');
                 $this->sendJsonResponse($message, true, 200, $link->getData());
             }
 
@@ -123,7 +123,7 @@ final class Links extends Route
     {
         if (!isset($params['id'])) {
             $this->sendUnprocessableEntity(
-                __('Missing some required fields.', 'wc-payment-link'),
+                __('Missing some required fields.', 'wc-payment-links'),
                 ['missing' => ['id']]
             );
         }
@@ -131,18 +131,18 @@ final class Links extends Route
         try {
             $repository = new LinkRepository();
             $link = $repository->findById($params['id']);
-    
+
             $result = $repository->remove($link);
-    
+
             if ($result) {
                 $this->sendJsonResponse(
-                    __('Link succefuly deleted!', 'wc-payment-link'),
+                    __('Link succefuly deleted!', 'wc-payment-links'),
                     true,
-                    200,    
+                    200,
                     $link->getData()
                 );
             } else {
-    
+
             }
         } catch (\Exception $e) {
             $this->sendJsonResponse(
@@ -176,7 +176,7 @@ final class Links extends Route
         return $return;
     }
 
-    private function validateLinkFields(array $params, string $type): void 
+    private function validateLinkFields(array $params, string $type): void
     {
         $needed = [
             'name' => 'string',
@@ -204,13 +204,13 @@ final class Links extends Route
 
         if (!empty($missing)) {
             $this->sendUnprocessableEntity(
-                __('Missing some required fields.', 'wc-payment-link'),
+                __('Missing some required fields.', 'wc-payment-links'),
                 ['missing' => $missing]
             );
 
         } else if (!empty($type_error)) {
             $this->sendUnprocessableEntity(
-                __('Some fields do not have the expected types.', 'wc-payment-link'),
+                __('Some fields do not have the expected types.', 'wc-payment-links'),
                 ['fields' => $type_error]
             );
         }

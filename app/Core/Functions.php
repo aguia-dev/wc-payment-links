@@ -44,9 +44,9 @@ class Functions
         if ($name === wcplConfig()->baseFile()) {
 
             $label = sprintf(
-                '<a href="admin.php?page=wc-payment-link-links" id="deactivate-wc-payment-link" aria-label="%s">%s</a>',
-                __('Links', 'wc-payment-link'),
-                __('Links', 'wc-payment-link')
+                '<a href="admin.php?page=wc-payment-links-links" id="deactivate-wc-payment-links" aria-label="%s">%s</a>',
+                __('Links', 'wc-payment-links'),
+                __('Links', 'wc-payment-links')
             );
 
             $arr['settings'] = $label;
@@ -68,7 +68,7 @@ class Functions
         if (!current_user_can('activate_plugins')) {
             return;
         }
-        
+
         if (!isset($_REQUEST['action']) || !isset($_REQUEST['plugin'])) {
             return;
         }
@@ -113,11 +113,11 @@ class Functions
     public function displayDependencyNotice(): void
     {
         $class = 'notice notice-error';
-        $title = __('WC Payment Links', 'wc-payment-link');
+        $title = __('WC Payment Links', 'wc-payment-links');
 
         $message = __(
             'This plugin needs the following plugins to work properly:',
-            'wc-payment-link'
+            'wc-payment-links'
         );
 
         $keys = array_keys(self::getMissingDependencies());
