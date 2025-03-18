@@ -1,0 +1,182 @@
+# Copyright (C) 2025 Matheus Aguiar
+# This file is distributed under the GPL v3 or later.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WC Payment Links 1.0.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wc-payment-links\n"
+"POT-Creation-Date: 2025-03-18 19:14-0300\n"
+"PO-Revision-Date: 2025-03-18 19:31-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#: app/API/Routes/Links.php:59
+msgid "No link founded!"
+msgstr "¡Ningún enlace encontrado!"
+
+#: app/API/Routes/Links.php:113
+msgid "Link succefuly saved!"
+msgstr "¡Enlace guardado con éxito!"
+
+#: app/API/Routes/Links.php:126 app/API/Routes/Links.php:207
+msgid "Missing some required fields."
+msgstr "Faltan algunos campos obligatorios."
+
+#: app/API/Routes/Links.php:139
+msgid "Link succefuly deleted!"
+msgstr "¡Enlace eliminado con éxito!"
+
+#: app/API/Routes/Links.php:213
+msgid "Some fields do not have the expected types."
+msgstr "Algunos campos no tienen los tipos esperados."
+
+#: app/API/Routes/Route.php:73
+msgid "User not authorized! Please, contact the site adminstrator"
+msgstr "¡Usuario no autorizado! Por favor, contacte al administrador del sitio"
+
+#: app/Controllers/Menus/Links.php:76
+msgid "Link saved successfully!"
+msgstr "¡Enlace guardado con éxito!"
+
+#: app/Controllers/Menus/Links.php:79 app/Controllers/Menus/Links.php:89
+#: app/Controllers/Menus/Links.php:112
+msgid "Error message"
+msgstr "Mensaje de error"
+
+#: app/Controllers/Menus/Links.php:121
+msgid "Link deleted successfully!"
+msgstr "¡Enlace eliminado con éxito!"
+
+#: app/Controllers/Menus/Links.php:151
+msgid "Name"
+msgstr "Nombre"
+
+#: app/Controllers/Menus/Links.php:152
+#: app/Views/Admin/menus/settings/index.php:62
+msgid "Token"
+msgstr "Token"
+
+#: app/Controllers/Menus/Links.php:153
+msgid "Expire Date"
+msgstr "Fecha de expiración"
+
+#: app/Controllers/Menus/Links.php:158
+msgid "The field: <b>%s</b> is required!"
+msgstr "¡El campo: <b>%s</b> es obligatorio!"
+
+#: app/Controllers/Menus.php:10 app/Views/Admin/menus/settings/index.php:13
+msgid "Payment Links"
+msgstr "Enlaces de pago"
+
+#. Plugin Name of the plugin/theme
+msgid "WC Payment Links"
+msgstr "WC Enlaces de Pago"
+
+#: app/Core/Functions.php:48 app/Core/Functions.php:49
+msgid "Links"
+msgstr "Enlaces"
+
+#: app/Core/Functions.php:118
+msgid "This plugin needs the following plugins to work properly:"
+msgstr "Este plugin necesita los siguientes plugins para funcionar correctamente:"
+
+#: app/Exceptions/ExpiredTokenException.php:12
+msgid "The entered token"
+msgstr "El token ingresado"
+
+#: app/Exceptions/ExpiredTokenException.php:13
+msgid "is expired! Generate a new or update token expiration date"
+msgstr "ha expirado. Genere uno nuevo o actualice la fecha de expiración del token"
+
+#: app/Exceptions/InvalidTokenException.php:10
+msgid "The value used for token is not a valid uuid!"
+msgstr "¡El valor utilizado para el token no es un UUID válido!"
+
+#: app/Views/Admin/menus/settings/index.php:15
+msgid "New payment link"
+msgstr "Nuevo enlace de pago"
+
+#: app/Views/Admin/menus/settings/index.php:20
+msgid "Search"
+msgstr "Buscar"
+
+#: app/Views/Admin/menus/settings/index.php:27
+msgid "Search for links"
+msgstr "Buscar enlaces"
+
+#: app/Views/Admin/menus/settings/index.php:46
+msgid "Link Name"
+msgstr "Nombre del enlace"
+
+#: app/Views/Admin/menus/settings/index.php:54
+msgid "Expire at"
+msgstr "Expira en"
+
+#: app/Views/Admin/menus/settings/index.php:70
+msgid "Products"
+msgstr "Productos"
+
+#: app/Views/Admin/menus/settings/index.php:77
+msgid "Cart Total"
+msgstr "Total del carrito"
+
+#: app/Views/Admin/menus/settings/index.php:84
+msgid "Actions"
+msgstr "Acciones"
+
+#: app/Views/Admin/menus/settings/index.php:138
+msgid "Previous"
+msgstr "Anterior"
+
+#: app/Views/Admin/menus/settings/index.php:156
+msgid "Next"
+msgstr "Siguiente"
+
+#: app/Views/Admin/menus/settings/modal.php:17
+msgid "Edit Link"
+msgstr "Editar enlace"
+
+#: app/Views/Admin/menus/settings/modal.php:27
+msgid "Name:"
+msgstr "Nombre:"
+
+#: app/Views/Admin/menus/settings/modal.php:33
+msgid "Token:"
+msgstr "Token:"
+
+#: app/Views/Admin/menus/settings/modal.php:46
+msgid "Expire at:"
+msgstr "Expira en:"
+
+#: app/Views/Admin/menus/settings/modal.php:49
+msgid "H:"
+msgstr "H:"
+
+#: app/Views/Admin/menus/settings/modal.php:56
+msgid "Cart"
+msgstr "Carrito"
+
+#: app/Views/Admin/menus/settings/modal.php:75
+msgid "Coupon"
+msgstr "Cupón"
+
+#: app/Views/Admin/menus/settings/modal.php:82
+msgid "Save"
+msgstr "Guardar"
+
+#: wc-payment-links.php:25
+msgid "The WC Payment Links isn't compatible to your PHP version."
+msgstr "WC Payment Links no es compatible con tu versión de PHP."
+
+#: wc-payment-links.php:26
+msgid "The PHP version has to be a less 8.0!"
+msgstr "¡La versión de PHP debe ser inferior a 8.0!"
+
+#. Description of the plugin/theme
+msgid "Payment links for WooCommerce"
+msgstr "Enlaces de pago para WooCommerce"

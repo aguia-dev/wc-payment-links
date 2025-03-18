@@ -3,7 +3,7 @@
   "version": "1.0.4",
   "description": "Payment links for WooCommerce",
   "repository": "https://github.com/aguia-dev/wc-payment-links",
-  "author": "Matheus Aguiar",
+  "author": "AGUIA.DEV",
   "license": "GPL-3.0",
   "devDependencies": {
     "@parcel/transformer-sass": "2.12.0",
