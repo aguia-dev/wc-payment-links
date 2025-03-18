@@ -37,9 +37,20 @@ class Settings
             element.addEventListener('click', () => {
                 const text = element.getAttribute('data-copy');
 
-                if (navigator?.clipboard?.writeText) {
-                    navigator.clipboard.writeText(text);
-                }
+                if (text) {
+					try {
+						navigator.clipboard.writeText(text);
+					} catch (error) {
+                        const tempTextArea = document.createElement('textarea');
+                        tempTextArea.value = text;
+                        document.body.appendChild(tempTextArea);
+
+                        tempTextArea.select();
+
+                        document.execCommand('copy');
+                        document.body.removeChild(tempTextArea);
+					}
+				}
             })
         });
     }
