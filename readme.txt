@@ -2,7 +2,7 @@
 Contributors: aguiart0
 Tags: setup
 Requires at least: 5.0
-Tested up to: 6.5
+Tested up to: 6.7
 Stable tag: 1.0.4
 Requires PHP: 8.0
 License: GPLv3
@@ -10,10 +10,17 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Payment links for WooCommerce
 
 == Description ==
-Payment links for WooCommerce
+WC Payment Links is a WooCommerce plugin that allows you to generate custom payment links with pre-selected products. With this tool, you can create specific URLs that, when accessed, automatically populate the cart on the checkout page, streamlining the purchase process for your customers.
+
+Key Features:
+Select products and quantities for the payment link.
+Set an expiration date for the generated link.
+Apply discount coupons directly via the URL.
+Easily share the URL to speed up sales and payments.
+Perfect for store owners looking to provide a seamless shopping experience, ensuring customers arrive at checkout with everything ready for payment.
 
 == Documentation ==
-[Access README.md on our official github](https://github.com/devaguia/wc-payment-link)
+[Access README.md on our official github](https://github.com/aguia-dev/wc-payment-link)
 
 = Requisitos =
 - PHP version 8.0 or higher.
