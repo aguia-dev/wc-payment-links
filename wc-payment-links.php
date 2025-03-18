@@ -4,6 +4,7 @@
  * Plugin URI:  https://github.com/aguia-dev/wc-payment-links
  * Description: Payment links for WooCommerce
  * Author:      Matheus Aguiar
+ * Domain Path: /languages
  * Author URI:  https://github.com/aguia-dev/
  * License:     GPL v3 or later
  * Version: 1.0.4

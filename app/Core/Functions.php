@@ -11,6 +11,11 @@ class Functions
 {
     public function initialize(): void
     {
+        $locale = apply_filters( 'plugin_locale', get_locale(), wcplConfig()->pluginSlug() );
+
+		load_textdomain( wcplConfig()->pluginSlug(), wcplConfig()->dynamicDir() . "/languages/" . wcplConfig()->pluginSlug() . "-$locale.mo" );
+		load_plugin_textdomain( wcplConfig()->pluginSlug(), false, wcplConfig()->dynamicDir() . '/languages/' );
+
         load_plugin_textdomain(wcplConfig()->pluginSlug(), false);
     }
 
