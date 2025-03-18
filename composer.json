@@ -1,12 +1,12 @@
 {
-    "name": "devaguia/wc-payment-link",
+    "name": "aguia-dev/wc-payment-link",
     "version": "1.0.4",
     "description": "Payment links for WooCommerce",
     "type": "wordpress-plugin",
     "license": "GPL-3.0",
     "support": {
-      "issues": "https://github.com/devaguia/wc-payment-link/issues",
-      "source": "https://github.com/devaguia/wc-payment-link"
+      "issues": "https://github.com/aguia-dev/wc-payment-link/issues",
+      "source": "https://github.com/aguia-dev/wc-payment-link"
     },
     "keywords": [
       "wordpress",

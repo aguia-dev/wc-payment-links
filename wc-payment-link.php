@@ -1,14 +1,14 @@
 <?php
 /**
  * Plugin Name: WC Payment Links
- * Plugin URI:  https://github.com/devaguia/wc-payment-link
+ * Plugin URI:  https://github.com/aguia-dev/wc-payment-link
  * Description: Payment links for WooCommerce
  * Author:      Matheus Aguiar
- * Author URI:  https://github.com/devaguia/
+ * Author URI:  https://github.com/aguia-dev/
  * License:     GPL v3 or later
  * Version: 1.0.4
  *
- * @link    https://github.com/devaguia/
+ * @link    https://github.com/aguia-dev/
  * @since   1.0.1
  * @package WCPaymentLink
  */
