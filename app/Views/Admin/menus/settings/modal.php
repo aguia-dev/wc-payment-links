@@ -4,10 +4,10 @@
  * @var array $products
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; 
+if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
-<div id="link-form" class="flex absolute z-1000 left-0 top-[100px] w-full h-fit overflow-auto items-center justify-center bg-black bg-opacity-0 hidden">
+<div id="link-form" class="flex absolute z-1000 left-0 top-[100px] w-full h-fit overflow-auto items-center justify-center hidden">
     <form class="bg-white rounded-md py-10 px-10 max-w-screen-4xl shadow-xl" method="post">
         <div>
             <span id="close-link-form" class="relative hover:cursor-pointer text-2xl font-bold float-right left-2 bottom-6"><i class="fa-solid fa-xmark"></i></span>
@@ -79,7 +79,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             </div>
         </div>
         <div>
-            <button class="w-[120px] float-right text-white h-10 bg-blue-600 outline-0 mt-[20px] border-none shadow-md rounded-md hover:bg-[#316beb]"><?php echo esc_html__('Save','wc-payment-link'); ?></button>
+            <button class="w-[120px] float-right text-white h-10 bg-blue-600 outline-0 mt-[20px] border-none shadow-md rounded-md hover:bg-[#316beb] cursor-pointer"><?php echo esc_html__('Save','wc-payment-link'); ?></button>
         </div>
         <input type="hidden" value="save" name="action"/>
         <input type="hidden" value="" id="hidden_link_id" name="link_id"/>

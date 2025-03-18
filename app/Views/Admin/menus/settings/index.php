@@ -4,14 +4,14 @@
  * @var \WCPaymentLink\Model\LinkModel[] $links
  */
 
- if ( ! defined( 'ABSPATH' ) ) exit; 
+ if ( ! defined( 'ABSPATH' ) ) exit;
 
 ?>
 
 <div class="wrap wpl-wrap px-8">
     <div class="my-4 flex align-middle">
         <h1 id="table-desc" class="text-3xl"><?php echo esc_html__('Payment Links', 'wc-payment-link'); ?></h1>
-        <button id="add-payment-link" class="ml-4 p-8 pt-1 pb-1 bg-blue-600 text-white rounded justify-center hover:bg-[#316beb]">
+        <button id="add-payment-link" class="ml-4 p-8 pt-1 pb-1 bg-blue-600 text-white rounded justify-center hover:bg-[#316beb] cursor-pointer shadow-md">
             <?php echo esc_html__('New payment link', 'wc-payment-link'); ?>
         </button>
     </div>
@@ -23,13 +23,13 @@
                 <input type="search"
                     name="search"
                     id="default-search"
-                    class="block w-[180px] h-4 !p-4 !text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                    class="block w-[180px] h-4 !p-4 !text-sm text-gray-900 !border-0 !shadow-sm rounded-lg bg-gray-50"
                     placeholder="<?php echo esc_attr__('Search for links', 'wc-payment-link'); ?>"
                     value="<?php echo esc_attr( isset($search) ? $search : '')?>"
                 />
             </div>
             <input type="hidden" value="wc-payment-link-links" name="page"/>
-            <button class="ml-2 px-4 py-[8px] text-blue-600 bg-white rounded justify-center shadow-md border-0 border-gray-300">
+            <button class="ml-2 px-4 py-[8px] text-blue-600 bg-white rounded justify-center shadow-sm border-0 border-gray-300 cursor-pointer hover:bg-gray-50">
                 <svg class="w-4 h-4 text-blue-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                 </svg>
@@ -89,7 +89,7 @@
             </thead>
             <tbody>
             <?php foreach ($links as $link): ?>
-                <tr class="bg-white hover:bg-gray-100 border-b">
+                <tr class="bg-white hover:bg-gray-100 border-b border-b-gray-100">
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                         <?php echo esc_html($link->getName()) ?>
                     </td>
