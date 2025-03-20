@@ -64,6 +64,7 @@ jobs:
           echo "All right! 🍕"
 
   deploy:
+    if: 1 == 0
     runs-on: ubuntu-latest
     needs: release
 
