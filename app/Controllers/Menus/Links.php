@@ -27,7 +27,7 @@ class Links extends AbstractRender
         $page = filter_input( INPUT_POST, 'page', FILTER_SANITIZE_SPECIAL_CHARS );
         $action = filter_input( INPUT_POST, 'action', FILTER_SANITIZE_SPECIAL_CHARS );
 
-        if ($page != 'wc-payment-link-settings') {
+        if ($page != 'wc-payment-links-settings') {
             return;
         }
 
@@ -73,10 +73,10 @@ class Links extends AbstractRender
             if ($linkId) {
                 $link->setId($linkId);
                 $link->saveProducts($products);
-                $this->fields['success'][] = __('Link saved successfully!', 'wc-payment-link');
+                $this->fields['success'][] = __('Link saved successfully!', 'wc-payment-links');
                 return;
             } else {
-                $this->fields['errors'] = [ __('Error message', 'wc-payment-link')];
+                $this->fields['errors'] = [ __('Error message', 'wc-payment-links')];
                 $this->logger->add([
                     'type'   => 'SAVE',
                     'object' => $fields
@@ -86,7 +86,7 @@ class Links extends AbstractRender
             }
 
         } catch (\Exception $e) {
-            $this->fields['errors'] = [__('Error message', 'wc-payment-link')];
+            $this->fields['errors'] = [__('Error message', 'wc-payment-links')];
 
             $this->logger->add([
                 'type'   => 'SAVE',
@@ -109,7 +109,7 @@ class Links extends AbstractRender
             $data = $this->linkRepository->remove($link);
 
             if (!$data) {
-                $this->fields['errors'] = [ __('Error message', 'wc-payment-link')];
+                $this->fields['errors'] = [ __('Error message', 'wc-payment-links')];
                 $this->logger->add([
                     'type'   => 'SAVE',
                     'Link' => $linkId
@@ -118,7 +118,7 @@ class Links extends AbstractRender
                 wp_redirect(admin_url("admin.php?page={$page}"));
             }
 
-            $this->fields['success'][] = __('Link deleted successfully!', 'wc-payment-link');
+            $this->fields['success'][] = __('Link deleted successfully!', 'wc-payment-links');
             return;
 
         } catch (\Exception $e) {
@@ -148,14 +148,14 @@ class Links extends AbstractRender
     {
         $errors = [];
         $needed = [
-            'name'      => __('Name', 'wc-payment-link'),
-            'token'     => __('Token', 'wc-payment-link'),
-            'expire_at' => __('Expire Date', 'wc-payment-link'),
+            'name'      => __('Name', 'wc-payment-links'),
+            'token'     => __('Token', 'wc-payment-links'),
+            'expire_at' => __('Expire Date', 'wc-payment-links'),
         ];
 
         foreach ($needed as $key => $value) {
             if (empty($fields[$key])) {
-                $pattern = __('The field: <b>%s</b> is required!', 'wc-payment-link');
+                $pattern = __('The field: <b>%s</b> is required!', 'wc-payment-links');
                 $message = sprintf($pattern, $value);
 
                 $errors[] = $message;

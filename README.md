@@ -62,7 +62,7 @@ base64_encode(USER:PASSWORD)
 ### GET
 #### Endpoint: 
 ```
-https://{domain}/wp-json/wc-payment-link/links/?{id}
+https://{domain}/wp-json/wc-payment-links/links/?{id}
 ```
 
 Use the endpoint above to make a get request and search for the links registered on your website. You can also use the link ID as a parameter to search for a specific ID.
@@ -80,7 +80,7 @@ If necessary, it is possible to provide more information in the body of the requ
 ### POST
 #### Endpoint:
 ```
-https://{domain}/wp-json/wc-payment-link/links/
+https://{domain}/wp-json/wc-payment-links/links/
 ```
 Use o método POST para cadastrar novos links usando a REST API. Você vai precisar enviar os dados do link través do corpo da requisição: 
 ```JSON
@@ -101,7 +101,7 @@ Use o método POST para cadastrar novos links usando a REST API. Você vai preci
 ### PUT
 #### Endpoint:
 ```
-https://{domain}/wp-json/wc-payment-link/links/{id}
+https://{domain}/wp-json/wc-payment-links/links/{id}
 ```
 Use o método PUT para atualizar os links já cadastrados usando a REST API. Você vai precisar adiocioar o ID do link como parâmetro de URL e enviar os dados do link través do corpo da requisição:
 ```JSON
@@ -122,7 +122,7 @@ Use o método PUT para atualizar os links já cadastrados usando a REST API. Voc
 ### DELETE
 #### Endpoint:
 ```
-https://{domain}/wp-json/wc-payment-link/links/{id}
+https://{domain}/wp-json/wc-payment-links/links/{id}
 ```
 Use the DELETE method passing the id of the link you want to remove using the REST API.
 
@@ -133,82 +133,93 @@ Use the DELETE method passing the id of the link you want to remove using the RE
 ├── LICENSE
 ├── README.md
 ├── app
-│   ├── API
-│   │   ├── Routes
-│   │   │   ├── Links.php
-│   │   │   └── Route.php
-│   │   └── Routes.php
-│   ├── Controllers
-│   │   ├── Menus
-│   │   │   └── Links.php
-│   │   ├── Menus.php
-│   │   ├── Pages
-│   │   │   └── PaymentLink.php
-│   │   └── Render
-│   │       ├── AbstractRender.php
-│   │       └── InterfaceRender.php
-│   ├── Core
-│   │   ├── Boot.php
-│   │   ├── Config.php
-│   │   ├── Export.php
-│   │   ├── Functions.php
-│   │   ├── Uninstall.php
-│   │   └── Utils.php
-│   ├── Exceptions
-│   │   ├── ExpiredTokenException.php
-│   │   └── InvalidTokenException.php
-│   ├── Helpers
-│   │   └── Helper.php
-│   ├── Infrastructure
-│   │   ├── Bootstrap.php
-│   │   ├── Model.php
-│   │   └── Repository.php
-│   ├── Model
-│   │   ├── LinkModel.php
-│   │   └── ProductModel.php
-│   ├── Repository
-│   │   ├── LinkRepository.php
-│   │   └── ProductRepository.php
-│   ├── Services
-│   │   └── WooCommerce
-│   │       ├── Checkout
-│   │       ├── Logs
-│   │       │   └── Logger.php
-│   │       ├── Orders
-│   │       ├── Thankyou
-│   │       ├── Webhooks
-│   │       ├── Webhooks.php
-│   │       └── WooCommerce.php
-│   └── Views
-│       ├── Admin
-│       │   └── menus
-│       │       └── settings
-│       │           ├── index.php
-│       │           └── modal.php
-│       ├── Pages
-│       │   └── checkout
-│       │       └── index.php
-│       └── WooCommerce
+│   ├── API
+│   │   ├── Routes
+│   │   │   ├── Links.php
+│   │   │   └── Route.php
+│   │   └── Routes.php
+│   ├── Controllers
+│   │   ├── Menus
+│   │   │   └── Links.php
+│   │   ├── Menus.php
+│   │   ├── Pages
+│   │   │   └── PaymentLink.php
+│   │   └── Render
+│   │       ├── AbstractRender.php
+│   │       └── InterfaceRender.php
+│   ├── Core
+│   │   ├── Boot.php
+│   │   ├── Config.php
+│   │   ├── Export.php
+│   │   ├── Functions.php
+│   │   ├── Uninstall.php
+│   │   └── Utils.php
+│   ├── Exceptions
+│   │   ├── ExpiredTokenException.php
+│   │   └── InvalidTokenException.php
+│   ├── Helpers
+│   │   └── Helper.php
+│   ├── Infrastructure
+│   │   ├── Bootstrap.php
+│   │   ├── Model.php
+│   │   └── Repository.php
+│   ├── Model
+│   │   ├── LinkModel.php
+│   │   └── ProductModel.php
+│   ├── Repository
+│   │   ├── LinkRepository.php
+│   │   └── ProductRepository.php
+│   ├── Services
+│   │   └── WooCommerce
+│   │       ├── Checkout
+│   │       ├── Logs
+│   │       │   └── Logger.php
+│   │       ├── Orders
+│   │       ├── Thankyou
+│   │       ├── Webhooks
+│   │       ├── Webhooks.php
+│   │       └── WooCommerce.php
+│   └── Views
+│       ├── Admin
+│       │   └── menus
+│       │       └── settings
+│       │           ├── index.php
+│       │           └── modal.php
+│       ├── Pages
+│       │   └── checkout
+│       │       ├── blocks.php
+│       │       └── classic.php
+│       └── WooCommerce
 ├── assets
-│   ├── images
-│   │   └── icons
-│   ├── scripts
-│   │   ├── admin
-│   │   │   └── menus
-│   │   │       └── settings
-│   │   │           ├── index.js
-│   │   │           └── table.js
-│   │   ├── components
-│   │   └── theme
-│   │       └── pages
-│   │           └── checkout
-│   │               └── index.js
-│   └── styles
-│       └── app.css
+│   ├── icon-128x128.png
+│   ├── icon-256x256.png
+│   ├── icon.png
+│   ├── images
+│   │   └── icons
+│   ├── scripts
+│   │   ├── admin
+│   │   │   └── menus
+│   │   │       └── settings
+│   │   │           ├── index.js
+│   │   │           └── table.js
+│   │   ├── components
+│   │   └── theme
+│   │       └── pages
+│   │           └── checkout
+│   │               └── index.js
+│   └── styles
+│       └── app.css
 ├── composer.json
+├── languages
+│   ├── wc-payment-links-es_ES.mo
+│   ├── wc-payment-links-es_ES.po
+│   ├── wc-payment-links-pt_BR.mo
+│   └── wc-payment-links-pt_BR.po
 ├── package.json
 ├── readme.txt
-├── tailwind.config.js
-└── wc-payment-link.php
+├── screenshot-1.png
+├── screenshot-2.png
+├── screenshot-3.png
+└── wc-payment-links.php
 ```
 

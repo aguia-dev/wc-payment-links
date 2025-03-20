@@ -9,8 +9,8 @@ class ExpiredTokenException extends \UnexpectedValueException
         parent::__construct(
             sprintf(
                 "%s({$token}) %s",
-                __('The entered token', 'wc-payment-link'),
-                __('is expired! Generate a new or update token expiration date', 'wc-payment-link'),
+                __('The entered token', 'wc-payment-links'),
+                __('is expired! Generate a new or update token expiration date', 'wc-payment-links'),
             )
         );
     }

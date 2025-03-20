@@ -37,9 +37,20 @@ class Settings
             element.addEventListener('click', () => {
                 const text = element.getAttribute('data-copy');
 
-                if (navigator?.clipboard?.writeText) {
-                    navigator.clipboard.writeText(text);
-                }
+                if (text) {
+					try {
+						navigator.clipboard.writeText(text);
+					} catch (error) {
+                        const tempTextArea = document.createElement('textarea');
+                        tempTextArea.value = text;
+                        document.body.appendChild(tempTextArea);
+
+                        tempTextArea.select();
+
+                        document.execCommand('copy');
+                        document.body.removeChild(tempTextArea);
+					}
+				}
             })
         });
     }
@@ -94,7 +105,7 @@ class Settings
             'expire_at',
             'expire_hour',
             'coupon',
-            'link_id',
+            'modal-link-title',
             'hidden_link_id',
             'link_url'
         ];
@@ -103,8 +114,8 @@ class Settings
             const element = modal.querySelector(`#${field}`);
 
             switch (field) {
-                case 'link_id':
-                    element.innerText = '';
+                case 'modal-link-title':
+                    element.classList.add('hidden');
                     break;
                 case 'link_url':
                     element.removeAttribute('href');
@@ -140,6 +151,7 @@ class Settings
                     break;
                     case 'link_id':
                         element.innerText = `#${object[key]}`;
+                        element.parentElement.parentElement.classList.remove('hidden');
                         document.querySelector(`#hidden_${key}`).value = object[key];
                     break;
                     case 'link_url':
@@ -213,7 +225,7 @@ class Settings
                     product: checkbox.getAttribute('data-id'),
                     quantity: number.value ? number.value : 0
                 });
-                
+
             } else {
                 number.value = '';
             }

@@ -1,0 +1,88 @@
+name: Release and Deploy to WordPress.org 🌐
+
+on:
+  pull_request_target:
+    types: [closed]
+    branches: [master]
+
+jobs:
+  release:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install Composer dependencies ⬇️
+        run: composer install --no-dev --prefer-dist --no-progress
+
+      - name: Prepare node 🧪
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+
+      - name: Install node dependencies ⬇️
+        run: yarn install --frozen-lockfile --prefer-offline
+
+      - name: Building node dependencies 🧱
+        run: yarn build
+
+      - name: Removing development folders 🗑️
+        run: |
+          rm -r -f node_modules/
+          rm -r -f .parcel-cache/
+          rm -r -f assets/scripts/
+          rm -r -f assets/styles/
+
+      - name: Removing development files 🗑️
+        run: |
+          rm -f composer.json
+          rm -f composer.lock
+          rm -f package.json
+          rm -f package-json.lock
+          rm -f yarn.lock
+          rm -f README.md
+          rm -f .gitignore
+          rm -f .editorConfig
+
+      - name: Create a new GitHub tag release 🤖
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG_VERSION=$(bash .github/tag.sh)
+
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+
+          git add .
+          git commit -am 'build: generate a new tag'
+
+          git tag "v$TAG_VERSION"
+          git push origin "v$TAG_VERSION"
+
+          echo "All right! 🍕"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: release
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # To fetch all tags
+
+      - name: Prepare for WordPress Plugin Deploy
+        run: |
+          rm -r -f .github/
+          rm -r -f .git/
+
+      - name: WordPress Plugin Deploy
+        uses: nk-o/action-wordpress-plugin-deploy@master
+        env:
+          SVN_PASSWORD: ${{secrets.SVN_PASSWORD}}
+          SVN_USERNAME: ${{secrets.SVN_USERNAME}}
+          SOURCE_DIR: /
+          SLUG: wc-payment-links
+          ASSETS_DIR: assets

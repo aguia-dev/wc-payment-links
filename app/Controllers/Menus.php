@@ -7,7 +7,7 @@ class Menus {
     private function defineMenus(): array
     {
         return [
-            ['Links', __('Payment Links', 'wc-payment-link')]
+            ['Links', __('Payment Links', 'wc-payment-links')]
         ];
     }
 
@@ -22,7 +22,7 @@ class Menus {
             $function = wcplConfig()->pluginNamespace() . "\\Controllers\\Menus\\$controller[0]";
             $menu     = [
                 'title'    => $controller[1],
-                'slug'     => 'wc-payment-link-' . $slug,
+                'slug'     => 'wc-payment-links-' . $slug,
                 'function' => [new $function, 'request'],
                 'position' => $key
             ];

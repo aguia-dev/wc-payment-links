@@ -16,6 +16,11 @@ class Boot
             'defineCustomPayPermalink'
         ]);
 
+        add_action('init', [
+            new Functions,
+            'enqueueGlobalScripts'
+        ], 10);
+
         add_action('admin_init', [
             new Functions,
             'desactivationFunction'
