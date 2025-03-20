@@ -16,11 +16,12 @@
     "uuid": "^9.0.1"
   },
   "scripts": {
-    "build": "yarn build:parcel && yarn build:tailwind",
+    "build": "yarn build:parcel && yarn build:tailwind && yarn copy-fonts",
     "build:parcel": "parcel build ./assets/scripts/**/**/*.js --dist-dir ./dist/scripts/",
     "build:tailwind": "npx @tailwindcss/cli -i ./assets/styles/app.css -o ./dist/styles/app.css",
     "dev:parcel": "parcel watch ./assets/scripts/**/**/**/*.js  --dist-dir ./dist/scripts/",
     "dev:tailwind": "npx @tailwindcss/cli -i ./assets/styles/app.css -o ./dist/styles/app.css --watch",
+    "copy-fonts": "mkdir -p dist/webfonts && cp node_modules/@fortawesome/fontawesome-free/webfonts/* dist/webfonts/",
     "i18n:textdomain": "wpi18n addtextdomain --exclude=dist,node_modules,assets,tests,vendor",
     "i18n:pot": "wpi18n makepot --exclude=dist,node_modules,assets,tests,vendor"
   },
