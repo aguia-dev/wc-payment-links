@@ -12,9 +12,7 @@ if (!function_exists('do_blocks')) {
 	exit;
 }
 
-echo do_blocks(get_post_field('post_content', $post->ID));
+echo do_blocks(get_post_field('post_content', $postId));
 ?>
-
-<input type="hidden" aria-name="wc-payment-links-checkout-token" id="wc-payment-links-checkout-token" value="<?php echo esc_attr($token); ?>">
 
 <?php get_footer(); ?>

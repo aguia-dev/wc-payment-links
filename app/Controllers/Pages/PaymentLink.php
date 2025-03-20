@@ -47,6 +47,8 @@ class PaymentLink extends AbstractRender
                     $woocommerce->cart->apply_coupon($link->getCoupon());
                 }
 
+                $this->fields['token'] = $this->token;
+
             } else {
                 wp_redirect(home_url('/404'));
             }
@@ -63,7 +65,10 @@ class PaymentLink extends AbstractRender
 
     private function setPostVar(): void
     {
-        $GLOBALS['post'] = get_post(get_option('woocommerce_checkout_page_id'));
+        $post = get_post(get_option('woocommerce_checkout_page_id'));
+
+        $GLOBALS['post'] = $post;
+        $this->fields['postId'] = $post->ID;
     }
 
     private function getCheckoutFile(): string
