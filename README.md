@@ -133,82 +133,93 @@ Use the DELETE method passing the id of the link you want to remove using the RE
 ├── LICENSE
 ├── README.md
 ├── app
-│   ├── API
-│   │   ├── Routes
-│   │   │   ├── Links.php
-│   │   │   └── Route.php
-│   │   └── Routes.php
-│   ├── Controllers
-│   │   ├── Menus
-│   │   │   └── Links.php
-│   │   ├── Menus.php
-│   │   ├── Pages
-│   │   │   └── PaymentLink.php
-│   │   └── Render
-│   │       ├── AbstractRender.php
-│   │       └── InterfaceRender.php
-│   ├── Core
-│   │   ├── Boot.php
-│   │   ├── Config.php
-│   │   ├── Export.php
-│   │   ├── Functions.php
-│   │   ├── Uninstall.php
-│   │   └── Utils.php
-│   ├── Exceptions
-│   │   ├── ExpiredTokenException.php
-│   │   └── InvalidTokenException.php
-│   ├── Helpers
-│   │   └── Helper.php
-│   ├── Infrastructure
-│   │   ├── Bootstrap.php
-│   │   ├── Model.php
-│   │   └── Repository.php
-│   ├── Model
-│   │   ├── LinkModel.php
-│   │   └── ProductModel.php
-│   ├── Repository
-│   │   ├── LinkRepository.php
-│   │   └── ProductRepository.php
-│   ├── Services
-│   │   └── WooCommerce
-│   │       ├── Checkout
-│   │       ├── Logs
-│   │       │   └── Logger.php
-│   │       ├── Orders
-│   │       ├── Thankyou
-│   │       ├── Webhooks
-│   │       ├── Webhooks.php
-│   │       └── WooCommerce.php
-│   └── Views
-│       ├── Admin
-│       │   └── menus
-│       │       └── settings
-│       │           ├── index.php
-│       │           └── modal.php
-│       ├── Pages
-│       │   └── checkout
-│       │       └── index.php
-│       └── WooCommerce
+│   ├── API
+│   │   ├── Routes
+│   │   │   ├── Links.php
+│   │   │   └── Route.php
+│   │   └── Routes.php
+│   ├── Controllers
+│   │   ├── Menus
+│   │   │   └── Links.php
+│   │   ├── Menus.php
+│   │   ├── Pages
+│   │   │   └── PaymentLink.php
+│   │   └── Render
+│   │       ├── AbstractRender.php
+│   │       └── InterfaceRender.php
+│   ├── Core
+│   │   ├── Boot.php
+│   │   ├── Config.php
+│   │   ├── Export.php
+│   │   ├── Functions.php
+│   │   ├── Uninstall.php
+│   │   └── Utils.php
+│   ├── Exceptions
+│   │   ├── ExpiredTokenException.php
+│   │   └── InvalidTokenException.php
+│   ├── Helpers
+│   │   └── Helper.php
+│   ├── Infrastructure
+│   │   ├── Bootstrap.php
+│   │   ├── Model.php
+│   │   └── Repository.php
+│   ├── Model
+│   │   ├── LinkModel.php
+│   │   └── ProductModel.php
+│   ├── Repository
+│   │   ├── LinkRepository.php
+│   │   └── ProductRepository.php
+│   ├── Services
+│   │   └── WooCommerce
+│   │       ├── Checkout
+│   │       ├── Logs
+│   │       │   └── Logger.php
+│   │       ├── Orders
+│   │       ├── Thankyou
+│   │       ├── Webhooks
+│   │       ├── Webhooks.php
+│   │       └── WooCommerce.php
+│   └── Views
+│       ├── Admin
+│       │   └── menus
+│       │       └── settings
+│       │           ├── index.php
+│       │           └── modal.php
+│       ├── Pages
+│       │   └── checkout
+│       │       ├── blocks.php
+│       │       └── classic.php
+│       └── WooCommerce
 ├── assets
-│   ├── images
-│   │   └── icons
-│   ├── scripts
-│   │   ├── admin
-│   │   │   └── menus
-│   │   │       └── settings
-│   │   │           ├── index.js
-│   │   │           └── table.js
-│   │   ├── components
-│   │   └── theme
-│   │       └── pages
-│   │           └── checkout
-│   │               └── index.js
-│   └── styles
-│       └── app.css
+│   ├── icon-128x128.png
+│   ├── icon-256x256.png
+│   ├── icon.png
+│   ├── images
+│   │   └── icons
+│   ├── scripts
+│   │   ├── admin
+│   │   │   └── menus
+│   │   │       └── settings
+│   │   │           ├── index.js
+│   │   │           └── table.js
+│   │   ├── components
+│   │   └── theme
+│   │       └── pages
+│   │           └── checkout
+│   │               └── index.js
+│   └── styles
+│       └── app.css
 ├── composer.json
+├── languages
+│   ├── wc-payment-links-es_ES.mo
+│   ├── wc-payment-links-es_ES.po
+│   ├── wc-payment-links-pt_BR.mo
+│   └── wc-payment-links-pt_BR.po
 ├── package.json
 ├── readme.txt
-├── tailwind.config.js
+├── screenshot-1.png
+├── screenshot-2.png
+├── screenshot-3.png
 └── wc-payment-links.php
 ```
 
