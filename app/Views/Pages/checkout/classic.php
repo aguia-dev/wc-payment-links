@@ -1,6 +1,6 @@
 <?php
 /**
- * template: wp-content/plugins/wc-payment-links/app/Views/Pages/checkout/index.php
+ * template: wp-content/plugins/wc-payment-links/app/Views/Pages/checkout/classic.php
  */
 
  if ( ! defined( 'ABSPATH' ) ) exit;
