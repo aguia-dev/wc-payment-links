@@ -2,10 +2,10 @@
 # This file is distributed under the GPL v3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: WC Payment Links 1.0.4\n"
+"Project-Id-Version: Payment links for WooCommerce 1.0.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wc-payment-links\n"
 "POT-Creation-Date: 2025-03-18 19:14-0300\n"
-"PO-Revision-Date: 2025-03-18 19:45-0300\n"
+"PO-Revision-Date: 2025-03-21 08:29-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -73,7 +73,7 @@ msgid "Payment Links"
 msgstr "Links de Pagamento"
 
 #. Plugin Name of the plugin/theme
-msgid "WC Payment Links"
+msgid "Payment links for WooCommerce"
 msgstr "Links de Pagamento para WooCommerce"
 
 #: app/Core/Functions.php:48 app/Core/Functions.php:49
@@ -169,13 +169,13 @@ msgid "Save"
 msgstr "Salvar"
 
 #: wc-payment-links.php:25
-msgid "The WC Payment Links isn't compatible to your PHP version. "
-msgstr "Os links de pagamento do WC não são compatíveis com sua versão do PHP. "
+msgid "The Payment links for WooCommerce isn't compatible to your PHP version. "
+msgstr "O plugin Links de Pagamento para WooCommercce não são compatíveis com sua versão do PHP. "
 
 #: wc-payment-links.php:26
 msgid "The PHP version has to be a less 8.0!"
 msgstr "A versão do PHP tem que ser menor que 8.0!"
 
 #. Description of the plugin/theme
-msgid "Payment links for WooCommerce"
-msgstr "Links de Pagamento para WooCommerce"
+msgid "Create payment links and share them with your clients."
+msgstr "Crie links de pagamentos e compartilhe com seus clients."

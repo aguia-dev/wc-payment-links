@@ -124,7 +124,7 @@ class Functions
     public function displayDependencyNotice(): void
     {
         $class = 'notice notice-error';
-        $title = __('WC Payment Links', 'wc-payment-links');
+        $title = __('Payment links for WooCommerce', 'wc-payment-links');
 
         $message = __(
             'This plugin needs the following plugins to work properly:',

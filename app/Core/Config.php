@@ -47,7 +47,7 @@ class Config
 
     public function pluginName(): string
     {
-        return __('WC Payment Links', 'wc-payment-links');
+        return __('Payment links for WooCommerce', 'wc-payment-links');
     }
 
     public function pluginSlug(): string
@@ -67,6 +67,6 @@ class Config
 
     public function pluginVersion(): string
     {
-        return  '1.0.4';
+        return  '1.0.5';
     }
 }
