@@ -1,7 +1,7 @@
 {
   "name": "wc-payment-links",
-  "version": "1.0.4",
-  "description": "Payment links for WooCommerce",
+  "version": "1.0.5",
+  "description": "Create payment links and share them with your clients.",
   "repository": "https://github.com/aguia-dev/wc-payment-links",
   "author": "AGUIA.DEV",
   "license": "GPL-3.0",

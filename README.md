@@ -1,6 +1,6 @@
-# WC Payment Links
+# Payment links for WooCommerce
 
-**Description:** Payment links for WooCommerce
+**Description:** Create payment links and share them with your clients.
 
 ## Anchors
 - [Install dependencies](#install)
@@ -53,7 +53,7 @@ yarn build
 <h2 id="api">REST API</h1>
 
 ### AUTHORIZATION
-Use Basic Authentication para se autenticar e utilizar a REST API do plugin WC Payment Links;
+Use Basic Authentication para se autenticar e utilizar a REST API do plugin Payment links for WooCommerce;
 <br>
 Example: 
 ```PHP

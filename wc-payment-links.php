@@ -1,16 +1,15 @@
 <?php
 /**
- * Plugin Name: WC Payment Links
+ * Plugin Name: Payment links for WooCommerce
  * Plugin URI:  https://github.com/aguia-dev/wc-payment-links
- * Description: Payment links for WooCommerce
+ * Description: Create payment links and share them with your clients.
  * Author:      AGUIA.DEV
  * Domain Path: /languages
  * Author URI:  https://github.com/aguia-dev/
  * License:     GPL v3 or later
- * Version: 1.0.4
+ * Version: 1.0.5
  *
  * @link    https://github.com/aguia-dev/
- * @since   1.0.1
  * @package WCPaymentLink
  */
 
@@ -23,10 +22,10 @@ if (version_compare(phpversion(), '8.0') < 0) {
 	wp_die(
 		sprintf(
 			"%s <p>%s</p>",
-			__("The WC Payment Links isn't compatible to your PHP version. ", 'wc-payment-links'),
+			__("The Payment links for WooCommerce isn't compatible to your PHP version. ", 'wc-payment-links'),
 			__('The PHP version has to be a less 8.0!', 'wc-payment-links')
 		),
-		'The WC Payment Links -- Error',
+		'The Payment links for WooCommerce -- Error',
 		['back_link' => true]
 	);
 }
