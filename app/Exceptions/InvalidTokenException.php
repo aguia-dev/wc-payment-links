@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WCPaymentLink\Exceptions;
 
-class InvalidTokenException extends \UnexpectedValueException
+final class InvalidTokenException extends \UnexpectedValueException
 {
     public function __construct()
     {

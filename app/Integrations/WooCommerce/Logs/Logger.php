@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WCPaymentLink\Services\WooCommerce\Logs;
 
 use WC_Logger;
 
-class Logger
+final class Logger
 {
   private WC_Logger $wc;
   private string $prefix;

@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WCPaymentLink\Core;
 
-class Config
+final class Config
 {
     public function distUrl(string $relative = ''): string
     {
@@ -24,14 +26,14 @@ class Config
         return $this->dynamicDir() . "/app/Views/$relative";
     }
 
+    public function assetsDir(string $relative = ''): string
+    {
+        return $this->dynamicDir() . "/assets/$relative";
+    }
+
     public function dynamicDir(string $dir = __DIR__, int $level = 2): string
     {
         return dirname($dir, $level);
-    }
-
-    public function mainFileDir(): string
-    {
-        return $this->dynamicDir() . '/' . wcplConfig()->pluginSlug() . ".php";
     }
 
     public function baseFile(): string
@@ -58,11 +60,6 @@ class Config
     public function pluginNamespace(): string
     {
         return 'WCPaymentLink';
-    }
-
-    public function pluginPrefix(): string
-    {
-        return 'wpl';
     }
 
     public function pluginVersion(): string

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Custom Ruleset">
+    <description>PHP Code Standard</description>
+
+    <!-- Define the coding standard to use -->
+    <rule ref="PSR12"/>
+
+    <!-- Specify PHP file extensions -->
+    <arg name="extensions" value="php"/>
+
+    <!-- Directories and files to ignore -->
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>assets/*</exclude-pattern>
+    <exclude-pattern>dist/*</exclude-pattern>
+    <exclude-pattern>node_modules/*</exclude-pattern>
+    <exclude-pattern>.github/*</exclude-pattern>
+    <exclude-pattern>.parcel-cache/*</exclude-pattern>
+</ruleset>

@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WCPaymentLink\Core;
 
-class Export
+final class Export
 {
     private array $data;
 

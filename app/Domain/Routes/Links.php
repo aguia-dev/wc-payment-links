@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WCPaymentLink\API\Routes;
 
 use DateTime;
+use WCPaymentLink\API\Routes\Abstractions\Route;
 use WCPaymentLink\Model\LinkModel;
 use WCPaymentLink\Repository\LinkRepository;
 

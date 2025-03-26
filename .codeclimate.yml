@@ -1,0 +1,7 @@
+engines:
+  csslint:
+    enabled: true
+  phpcodesniffer:
+    enabled: true
+    config:
+      standard: "PSR12"

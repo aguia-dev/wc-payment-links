@@ -8,10 +8,12 @@
       "issues": "https://github.com/aguia-dev/wc-payment-links/issues",
       "source": "https://github.com/aguia-dev/wc-payment-links"
     },
+    "scripts": {
+      "phpcs": "phpcs ./ > phpcs.log",
+      "phpcbf": "phpcbf ./"
+    },
     "keywords": [
       "wordpress",
-      "plugin",
-      "template",
       "woocommerce"
     ],
     "authors": [
@@ -32,5 +34,8 @@
       "allow-plugins": {
         "pestphp/pest-plugin": true
       }
+    },
+    "require-dev": {
+      "squizlabs/php_codesniffer": "*"
     }
   }

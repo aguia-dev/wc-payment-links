@@ -1,8 +1,21 @@
 <?php
 
-namespace WCPaymentLink\Controllers;
+declare(strict_types=1);
 
-class Menus {
+namespace WCPaymentLink\Services;
+
+final class Menus implements InterfaceService
+{
+    public function initialize(): void
+    {
+        add_action('admin_menu', [$this, 'registerDomains'], 10);
+    }
+
+    public function registerDomains(): void
+    {
+        $this->createAdminMenu();
+        $this->removeDefaultSubmenu();
+    }
 
     private function defineMenus(): array
     {
@@ -11,17 +24,17 @@ class Menus {
         ];
     }
 
-    public function initializeMenus(): void
+    public function createAdminMenu(): void
     {
-        $controllers = $this->defineMenus();
+        $classes = $this->defineMenus();
         $menus = [];
 
-        foreach ($controllers as $key => $controller) {
+        foreach ($classes as $key => $class) {
 
-            $slug     = $this->getMenuSlug($controller[0]);
-            $function = wcplConfig()->pluginNamespace() . "\\Controllers\\Menus\\$controller[0]";
+            $slug     = $this->getMenuSlug($class[0]);
+            $function = wcplConfig()->pluginNamespace() . "\\Domain\\Menus\\$class[0]";
             $menu     = [
-                'title'    => $controller[1],
+                'title'    => $class[1],
                 'slug'     => 'wc-payment-links-' . $slug,
                 'function' => [new $function, 'request'],
                 'position' => $key
@@ -64,10 +77,17 @@ class Menus {
                 $menu['title'],
                 'manage_woocommerce',
                 $menu['slug'],
-                $menu['function']);
+                $menu['function']
+            );
         }
 
         ## Remove default submenu
         remove_submenu_page(wcplConfig()->pluginSlug() ,wcplConfig()->pluginSlug());
+    }
+
+    private function removeDefaultSubmenu(): void
+    {
+        $pluginSlug = wcplConfig()->pluginSlug();
+        remove_submenu_page($pluginSlug, $pluginSlug);
     }
 }

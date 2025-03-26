@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WCPaymentLink\Core;
 
-class Utils
+final class Utils
 {
     public function render(string $file, array $data): string
     {

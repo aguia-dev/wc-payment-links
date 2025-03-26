@@ -1,65 +1,186 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WCPaymentLink\Core;
 
-class Boot
+final class Boot
 {
     public function __construct()
     {
-        add_action('init', [
-            new Functions,
-            'initialize'
-        ]);
+        add_action('activated_plugin', [$this, 'activationFunction']);
+        add_action('init', [$this, 'initialize']);
+        add_action('admin_init', [$this, 'checkMissingDependencies']);
+        add_action('admin_init', [$this, 'desactivationFunction']);
+        add_action('plugin_action_links', [$this, 'setSettingsLink'], 10, 2);
+        //add_action('template_redirect', [$this, 'customPayCheckout']);
 
-        add_action('init', [
-            new Functions,
-            'defineCustomPayPermalink'
-        ]);
+        $this->loadServices();
+    }
 
-        add_action('init', [
-            new Functions,
-            'enqueueGlobalScripts'
-        ], 10);
+    public function loadServices(): void
+    {
+        $services = [
+            Routes::class,
+            Menus::class
+        ];
 
-        add_action('admin_init', [
-            new Functions,
-            'desactivationFunction'
-        ]);
+        if (empty(self::getMissingDependencies())) {
+            foreach ($services as $service) {
+                if (class_exists($service)) {
+                    $class = new $service;
+                    $class->initialize();
+                }
+            }
+        }
+    }
 
-        add_action('activated_plugin', [
-            new Functions,
-            'activationFunction'
-        ]);
+    public function initialize(): void
+    {
+        $locale = apply_filters( 'plugin_locale', get_locale(), wcplConfig()->pluginSlug() );
 
-        add_action('admin_init', [
-            new Functions,
-            'checkMissingDependencies'
-        ]);
+		load_textdomain( wcplConfig()->pluginSlug(), wcplConfig()->dynamicDir() . "/languages/" . wcplConfig()->pluginSlug() . "-$locale.mo" );
+		load_plugin_textdomain( wcplConfig()->pluginSlug(), false, wcplConfig()->dynamicDir() . '/languages/' );
+        load_plugin_textdomain(wcplConfig()->pluginSlug(), false);
 
-        add_action('admin_menu', [
-            new Functions,
-            'createAdminMenu'
-        ]);
+        $this->defineCustomPayPermalink();
+        $this->enqueueGlobalScripts();
+    }
 
-        add_action('woocommerce_init', [
-            new Functions,
-            'woocommerce'
-        ]);
+    public function defineCustomPayPermalink(): void
+    {
+        add_rewrite_rule('^pay/([^/]+)/?', 'index.php?token=$matches[1]', 'top');
+        add_rewrite_tag('%token%', '([^&]+)');
+        flush_rewrite_rules();
+    }
 
-        add_action('plugin_action_links', [
-            new Functions,
-            'setSettingsLink'
-        ], 10, 2);
+    public function enqueueGlobalScripts(): void
+    {
+        if(isset($_REQUEST['page']) && $_REQUEST['page'] === 'wc-payment-links-links') {
+            wp_enqueue_style('tailwind-css', wcplConfig()->distUrl('styles/app.css'), [], wcplConfig()->pluginVersion());
+        }
+    }
 
-        add_action('rest_api_init', [
-            new Functions,
-            'registerRestAPI'
-        ]);
+    public function createAdminMenu(): void
+    {
+        if (empty(self::getMissingDependencies())) {
+            $menus = new Menus();
+            $menus->initializeMenus();
+        }
+    }
 
-        add_action('template_redirect', [
-            new Functions,
-            'customPayCheckout'
-        ]);
+    public function woocommerce(): void
+    {
+        if (class_exists('WooCommerce')) {
+            $woocommerce = new WooCommerce;
+            $woocommerce->inicializeWooommerce();
+        }
+    }
+
+    public function setSettingsLink(array $arr, string $name): array
+    {
+        if ($name === wcplConfig()->baseFile()) {
+
+            $label = sprintf(
+                '<a href="admin.php?page=wc-payment-links-links" id="deactivate-wc-payment-links" aria-label="%s">%s</a>',
+                __('Links', 'wc-payment-links'),
+                __('Links', 'wc-payment-links')
+            );
+
+            $arr['settings'] = $label;
+        }
+
+        return $arr;
+    }
+
+    public function activationFunction(string $plugin): void
+    {
+        if (wcplConfig()->baseFile() === $plugin) {
+            $boot = new \WCPaymentLink\Infrastructure\Bootstrap();
+            $boot->initialize();
+        }
+    }
+
+    public function desactivationFunction(): void
+    {
+        if (!current_user_can('activate_plugins')) {
+            return;
+        }
+
+        if (!isset($_REQUEST['action']) || !isset($_REQUEST['plugin'])) {
+            return;
+        }
+
+        $action = filter_var($_REQUEST['action'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $plugin = filter_var($_REQUEST['plugin'], FILTER_SANITIZE_SPECIAL_CHARS);
+
+        if ($action === 'deactivate' && $plugin === dashboardConfig()->baseFile()) {
+            $uninstall = new Uninstall();
+            $uninstall->reset();
+        }
+    }
+
+    public function checkMissingDependencies(): void
+    {
+        $missingDependencies = self::getMissingDependencies();
+
+        if (is_array($missingDependencies) && !empty($missingDependencies)) {
+            add_action('admin_notices', [
+                $this, 'displayDependencyNotice'
+            ]);
+        }
+    }
+
+    public function getMissingDependencies(): array
+    {
+        $plugins = wp_get_active_and_valid_plugins();
+
+        $neededs = [
+            'WooCommerce' => wcplConfig()->dynamicDir( __DIR__, 3 ) . '/woocommerce/woocommerce.php'
+        ];
+
+        foreach ($neededs as $key => $needed ) {
+            if ( in_array( $needed, $plugins ) ) {
+                unset( $neededs[$key] );
+            }
+        }
+
+        return $neededs;
+    }
+
+    public function displayDependencyNotice(): void
+    {
+        $class = 'notice notice-error';
+        $title = __('Payment links for WooCommerce', 'wc-payment-links');
+
+        $message = __(
+            'This plugin needs the following plugins to work properly:',
+            'wc-payment-links'
+        );
+
+        $keys = array_keys(self::getMissingDependencies());
+        printf(
+            '<div class="%1$s"><p><strong>%2$s</strong> - %3$s <strong>%4$s</strong>.</p></div>',
+            esc_attr($class),
+            esc_html($title),
+            esc_html($message),
+            esc_html(implode(', ', $keys))
+        );
+    }
+
+    public function registerRestAPI(): void
+    {
+        $routes = new Routes();
+        $routes->register();
+    }
+
+    public function customPayCheckout(): void
+    {
+        global $wp;
+        if (isset($wp->query_vars['token'])) {
+            $paymentLink = new PaymentLink($wp->query_vars['token']);
+            $paymentLink->request();
+        };
     }
 }
 

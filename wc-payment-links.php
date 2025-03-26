@@ -1,13 +1,16 @@
 <?php
 /**
- * Plugin Name: Payment links for WooCommerce
- * Plugin URI:  https://github.com/aguia-dev/wc-payment-links
- * Description: Create payment links and share them with your clients.
- * Author:      AGUIA.DEV
- * Domain Path: /languages
- * Author URI:  https://github.com/aguia-dev/
- * License:     GPL v3 or later
- * Version: 1.0.5
+ * Plugin Name:       Payment links for WooCommerce
+ * Plugin URI:        https://github.com/aguia-dev/wc-payment-links
+ * Description:       Create payment links and share them with your clients.
+ * Author:            AGUIA.DEV
+ * Domain Path:       /languages
+ * Author URI:        https://github.com/aguia-dev/
+ * License:           GPL v3 or later
+ * Version:           1.0.5
+ * Requires PHP:      8.0
+ * Requires at least: 6.0
+ * Requires Plugins: woocommerce
  *
  * @link    https://github.com/aguia-dev/
  * @package WCPaymentLink
@@ -30,4 +33,5 @@ if (version_compare(phpversion(), '8.0') < 0) {
 	);
 }
 
-new WCPaymentLink\Core\Boot;
+$boot = new Parresia\Dashboard\Core\Boot;
+$boot->initialize();

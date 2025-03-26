@@ -1,9 +1,23 @@
 <?php
 
-namespace WCPaymentLink\Services\WooCommerce;
+declare(strict_types=1);
 
-class WooCommerce
+namespace WCPaymentLink\Services;
+
+final class WooCommerce implements InterfaceService
 {
+    public function initialize(): void
+	{
+        add_action('woocommerce_init', [$this, 'registerDomain']);
+	}
+
+    public function registerDomains(): void
+    {
+        if (class_exists('WooCommerce')) {
+            $this->inicializeWooommerce();
+        }
+    }
+
     public function inicializeWooommerce(): void
     {
         add_filter('woocommerce_locate_template', [$this, 'setOverwrittenWoocommerceTemplates'], 10, 3);

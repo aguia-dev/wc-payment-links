@@ -1,6 +1,8 @@
 <?php
 
-namespace WCPaymentLink\API\Routes;
+declare(strict_types=1);
+
+namespace WCPaymentLink\API\Routes\Abstractions;
 
 use Exception;
 use Throwable;

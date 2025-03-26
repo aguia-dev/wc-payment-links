@@ -1,11 +1,10 @@
 <?php
 
-namespace WCPaymentLink\Infrastructure;
+declare(strict_types=1);
 
-use WCPaymentLink\Repository\LinkRepository;
-use WCPaymentLink\Repository\ProductRepository;
+namespace Parresia\Dashboard\Core;
 
-class Bootstrap
+final class Database
 {
 	public array $tables;
 
@@ -14,7 +13,7 @@ class Bootstrap
 		$this->tables = [
             LinkRepository::class,
             ProductRepository::class
-		];
+        ];
 	}
 
 	public function initialize(): void
@@ -25,7 +24,7 @@ class Bootstrap
 	public function uninstall(): void
 	{
 		foreach ($this->tables as $table) {
-			if ( class_exists( $table ) ) {
+			if (class_exists($table)) {
 				$t = new $table;
 				$t->down();
 			}
@@ -35,11 +34,10 @@ class Bootstrap
 	private function tables() : void
 	{
 		foreach ($this->tables as $table) {
-			if ( class_exists( $table ) ) {
+			if (class_exists($table)) {
 				$t = new $table;
 				$t->up();
 			}
 		}
 	}
 }
-

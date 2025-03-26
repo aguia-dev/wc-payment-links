@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WCPaymentLink\Controllers\Pages;
 
 use DateTime;
 use Exception;
-use WCPaymentLink\Controllers\Render\AbstractRender;
 use WCPaymentLink\Exceptions\ExpiredTokenException;
 use WCPaymentLink\Repository\LinkRepository;
 use WCPaymentLink\Services\WooCommerce\Logs\Logger;
 use Automattic\WooCommerce\Blocks\Utils\CartCheckoutUtils;
 
-class PaymentLink extends AbstractRender
+final class PaymentLink
 {
     private array $fields = [];
     private LinkRepository $repository;
@@ -79,10 +80,7 @@ class PaymentLink extends AbstractRender
 
     private function enqueue(): void
     {
-        $this->enqueueScripts([
-            'name' => 'wc-payment-links',
-            'file' => 'scripts/theme/pages/checkout/index.js'
-        ]);
+        wp_enqueue_scripts('wc-payment-links-checkout', wcplConfig()->distUrl('scripts/theme/pages/checkout/index.js'), [], wcplConfig()->pluginVersion());
     }
 
     public function request(): void
@@ -91,7 +89,7 @@ class PaymentLink extends AbstractRender
         $this->fillCart();
         $this->enqueue();
 
-        echo $this->render($this->getCheckoutFile(), $this->fields);
+        echo wcplUtils()->render($this->getCheckoutFile(), $this->fields);
 
         exit;
     }

@@ -1,11 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WCPaymentLink\Core;
 
-class Uninstall
+final class Uninstall
 {
-    public function reset(): void
-    {
-        // Call the uninstall methods
-    }
+    public function reset(): void {}
 }

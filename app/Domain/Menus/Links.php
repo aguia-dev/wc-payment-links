@@ -1,14 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WCPaymentLink\Controllers\Menus;
 
-use WCPaymentLink\Controllers\Render\AbstractRender;
 use WCPaymentLink\Model\LinkModel;
 use WCPaymentLink\Repository\LinkRepository;
 use WCPaymentLink\Services\WooCommerce\Logs\Logger;
 use WP_Query;
 
-class Links extends AbstractRender
+final class Links
 {
     private array $fields = [];
     private Logger $logger;
@@ -166,7 +167,7 @@ class Links extends AbstractRender
     }
     public function enqueue(): void
     {
-        $this->enqueueScripts(['name' => 'settings', 'file' => 'scripts/admin/menus/settings/index.js']);
+        wp_enqueue_scripts('wc-payment-links-settings', wcplConfig()->distUrl('scripts/admin/menus/settings/index.js'), [], wcplConfig()->pluginVersion());
     }
 
     public function getProducts(): void
@@ -217,6 +218,6 @@ class Links extends AbstractRender
         $this->getProducts();
         $this->getLinks();
 
-        echo $this->render('Admin/menus/settings/index.php', $this->fields);
+        echo wcplUtils()->render('Admin/menus/settings/index.php', $this->fields);
     }
 }
