@@ -7,7 +7,7 @@ namespace WCPaymentLink\Domain\Pages;
 use DateTime;
 use Exception;
 use WCPaymentLink\Exceptions\ExpiredTokenException;
-use WCPaymentLink\Repository\LinkRepository;
+use WCPaymentLink\Persistence\Repositories\LinkRepository;
 use WCPaymentLink\Integrations\WooCommerce\Logs\Logger;
 use Automattic\WooCommerce\Blocks\Utils\CartCheckoutUtils;
 

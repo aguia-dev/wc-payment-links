@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WCPaymentLink\Core;
 
+use WCPaymentLink\Domain\Pages\PaymentLink;
 use WCPaymentLink\Services\Menus;
 use WCPaymentLink\Services\Routes;
 
@@ -18,7 +19,7 @@ final class Boot
         add_action('admin_init', [$this, 'desactivationFunction']);
         add_action('plugin_action_links', [$this, 'setSettingsLink'], 10, 2);
         add_action('init', [$this, 'initialize'], 999);
-        //add_action('template_redirect', [$this, 'customPayCheckout']);
+        add_action('template_redirect', [$this, 'customPayCheckout']);
 
         $this->loadServices();
     }

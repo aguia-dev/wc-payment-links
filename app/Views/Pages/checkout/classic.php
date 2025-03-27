@@ -9,9 +9,14 @@
 <?php get_header(); ?>
 
 <div>
-    <?php wc_print_notices(); ?>
-    <div class="woocommerce">
-        <?php echo do_shortcode('[woocommerce_checkout]'); ?>
+    <div class="entry-title" style="margin: 30px 0;">
+        <h1><?php the_title(); ?></h1>
+    </div>
+    <div class="entry-content">
+        <?php wc_print_notices(); ?>
+        <div class="woocommerce">
+            <?php echo do_shortcode('[woocommerce_checkout]'); ?>
+        </div>
     </div>
 </div>
 
