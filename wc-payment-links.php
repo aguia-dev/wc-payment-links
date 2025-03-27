@@ -33,5 +33,12 @@ if (version_compare(phpversion(), '8.0') < 0) {
 	);
 }
 
-$boot = new Parresia\Dashboard\Core\Boot;
+$boot = new WCPaymentLink\Core\Boot;
 $boot->initialize();
+
+
+function inspect_styles() {
+    global $wp_styles;
+	error_log( var_export( $wp_styles->queue, true ) );
+}
+add_action( 'wp_print_styles', 'inspect_styles' );

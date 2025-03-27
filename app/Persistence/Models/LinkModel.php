@@ -1,21 +1,20 @@
 <?php
 
-namespace WCPaymentLink\Model;
+namespace WCPaymentLink\Persistence\Models;
 
-use WCPaymentLink\Infrastructure\Model;
-use WCPaymentLink\Repository\ProductRepository;
-use WC_Coupon;
+use WCPaymentLink\Persistence\Repositories\ProductRepository;
 use WCPaymentLink\Exceptions\InvalidTokenException;
+use WCPaymentLink\Persistence\Models\Abstractions\AbstractModel;
+use WC_Coupon;
 
-class LinkModel extends Model
+//TODO Refactor unecessary get/set methods
+class LinkModel extends AbstractModel
 {
-	private ?int $id = null;
     /**
      * @var ProductModel[] $products
      */
     private array $products = [];
-    private \DateTime $createdAt;
-    private \DateTime $updatedAt;
+	private ?int $id = null;
     private ProductRepository $productRepository;
 
 	public function __construct(
@@ -94,6 +93,7 @@ class LinkModel extends Model
         $this->products[] = $productsModel;
     }
 
+    //TODO Move this method to ProductRepository class
     public function saveProducts(array $products)
     {
         $removed = $this->productRepository->removeLinkProducts($this->id);
@@ -139,26 +139,7 @@ class LinkModel extends Model
         $this->id = $id;
     }
 
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTime $createdAt): void
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTime $updatedAt): void
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
+    //TODO Move this method to a dedicated class
     public function getCartTotal(): float
     {
         $total = 0.0;

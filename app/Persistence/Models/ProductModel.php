@@ -1,18 +1,16 @@
 <?php
 
-namespace WCPaymentLink\Model;
+namespace WCPaymentLink\Persistence\Models;
 
-use WCPaymentLink\Infrastructure\Model;
+use WCPaymentLink\Persistence\Models\Abstractions\AbstractModel;
 
-class ProductModel extends Model
+//TODO Refactor unecessary get/set methods
+class ProductModel extends AbstractModel
 {
-    private \DateTime $createdAt;
-    private \DateTime $updatedAt;
-
     public function __construct(
         private int $productId,
         private int $quantity,
-        private ?int $linkId = null 
+        private ?int $linkId = null
     ){}
 
 

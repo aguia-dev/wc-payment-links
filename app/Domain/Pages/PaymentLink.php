@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace WCPaymentLink\Controllers\Pages;
+namespace WCPaymentLink\Domain\Pages;
 
 use DateTime;
 use Exception;
 use WCPaymentLink\Exceptions\ExpiredTokenException;
 use WCPaymentLink\Repository\LinkRepository;
-use WCPaymentLink\Services\WooCommerce\Logs\Logger;
+use WCPaymentLink\Integrations\WooCommerce\Logs\Logger;
 use Automattic\WooCommerce\Blocks\Utils\CartCheckoutUtils;
 
 final class PaymentLink

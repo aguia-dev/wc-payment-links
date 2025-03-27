@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Parresia\Dashboard\Core;
+namespace WCPaymentLink\Core;
 
 final class Database
 {

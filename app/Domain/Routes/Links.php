@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace WCPaymentLink\API\Routes;
+namespace WCPaymentLink\Domain\Routes;
 
 use DateTime;
-use WCPaymentLink\API\Routes\Abstractions\Route;
+use WCPaymentLink\Domain\Routes\Abstractions\Route;
 use WCPaymentLink\Model\LinkModel;
-use WCPaymentLink\Repository\LinkRepository;
+use WCPaymentLink\Persistence\Repository\LinkRepository;
 
 final class Links extends Route
 {
@@ -135,7 +135,7 @@ final class Links extends Route
             $repository = new LinkRepository();
             $link = $repository->findById($params['id']);
 
-            $result = $repository->remove($link);
+            $result = $repository->deleteLink($link);
 
             if ($result) {
                 $this->sendJsonResponse(

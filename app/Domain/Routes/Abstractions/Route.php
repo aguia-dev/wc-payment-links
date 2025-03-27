@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace WCPaymentLink\API\Routes\Abstractions;
+namespace WCPaymentLink\Domain\Routes\Abstractions;
 
 use Exception;
 use Throwable;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace WCPaymentLink\Core;
+namespace WCPaymentLink\Helpers;
 
 final class Config
 {

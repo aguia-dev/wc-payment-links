@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace WCPaymentLink\Services\WooCommerce\Logs;
+namespace WCPaymentLink\Integrations\WooCommerce\Logs;
 
 use WC_Logger;
 

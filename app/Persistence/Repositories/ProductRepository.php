@@ -1,12 +1,12 @@
 <?php
 
-namespace WCPaymentLink\Repository;
+namespace WCPaymentLink\Persistence\Repositories;
 
-use WCPaymentLink\Infrastructure\Model;
-use WCPaymentLink\Infrastructure\Repository;
-use WCPaymentLink\Model\ProductModel;
+use WCPaymentLink\Persistence\Repositories\Abstractions\AbstractRepository;
+use WCPaymentLink\Persistence\Models\ProductModel;
+use WCPaymentLink\Persistence\Models\Abstractions\AbstractModel;
 
-class ProductRepository extends Repository
+class ProductRepository extends AbstractRepository
 {
 	public function __construct()
 	{
@@ -50,17 +50,12 @@ class ProductRepository extends Repository
 		return $entity;
 	}
 
-	public function remove(Model|ProductModel $entity): bool
-	{
-		return true;
-	}
-
-	protected function getEntityData(Model|ProductModel $entity): array
+	protected function getEntityData(AbstractModel|ProductModel $entity): array
 	{
 		return [
-			'product_id'  => $entity->getProductId(),
-            'quantity' => $entity->getQuantity(),
-            'link_id' => $entity->getLinkId()
+			'product_id' => $entity->getProductId(),
+            'quantity'   => $entity->getQuantity(),
+            'link_id'    => $entity->getLinkId()
 		];
 	}
 
@@ -73,9 +68,8 @@ class ProductRepository extends Repository
             'link_id'    => ['INT NOT NULL'],
 			'created_at' => ['DATETIME DEFAULT CURRENT_TIMESTAMP' ],
 			'updated_at' => ['DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP' ],
-			''           => [
-                "FOREIGN KEY (link_id) REFERENCES {$this->prefix}wc_payment_links(ID) ON DELETE CASCADE",
-            ],
+			''           => ["INDEX (product_id)"],
+			''           => ["FOREIGN KEY (link_id) REFERENCES {$this->prefix}wc_payment_links(ID) ON DELETE CASCADE"],
 		]);
 	}
 

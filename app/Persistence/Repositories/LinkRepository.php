@@ -1,12 +1,12 @@
 <?php
 
-namespace WCPaymentLink\Repository;
+namespace WCPaymentLink\Persistence\Repositories;
 
-use WCPaymentLink\Model\LinkModel;
-use WCPaymentLink\Infrastructure\Model;
-use WCPaymentLink\Infrastructure\Repository;
+use WCPaymentLink\Persistence\Repositories\Abstractions\AbstractRepository;
+use WCPaymentLink\Persistence\Models\LinkModel;
+use WCPaymentLink\Persistence\Models\Abstractions\AbstractModel;
 
-class LinkRepository extends Repository
+class LinkRepository extends AbstractRepository
 {
 	public function __construct()
 	{
@@ -23,38 +23,29 @@ class LinkRepository extends Repository
         );
 
 		$entity->setId($row->id);
-		$entity->setUpdatedAt(new \DateTime($row->updated_at));
-		$entity->setCreatedAt(new \DateTime($row->created_at));
+		$entity->updatedAt = new \DateTime($row->updated_at);
+		$entity->createdAt = new \DateTime($row->created_at);
 
 		return $entity;
 	}
 
-	public function remove(Model|LinkModel $entity): bool
+	public function deleteLink(LinkModel $entity): bool
 	{
 		if (!$entity->getId()) {
 			return false;
 		}
 
-		$query = $this->db->delete(
-			$this->table,
-			['id' => $entity->getId()]
-		);
-		
-		if (is_bool($query)) {
-			return false;
-		}
-
-		return true;
+		return $this->remove(['id' => $entity->getId()]) !== 0;
 	}
 
-	protected function getEntityData(Model|LinkModel $entity): array
+	protected function getEntityData(AbstractModel|LinkModel $entity): array
 	{
 		return [
-			'name'  => $entity->getName(),
-            'token' => $entity->getToken(),
+			'name'      => $entity->getName(),
+            'token'     => $entity->getToken(),
             'expire_at' => $entity->getExpireAt()?->format('Y-m-d H:i:s'),
-            'products' => serialize($entity->getProducts()),
-            'coupon' => $entity->getCoupon(),
+            'products'  => serialize($entity->getProducts()),
+            'coupon'    => $entity->getCoupon(),
 		];
 	}
 

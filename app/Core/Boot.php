@@ -4,15 +4,20 @@ declare(strict_types=1);
 
 namespace WCPaymentLink\Core;
 
+use WCPaymentLink\Services\Menus;
+use WCPaymentLink\Services\Routes;
+
 final class Boot
 {
     public function __construct()
     {
         add_action('activated_plugin', [$this, 'activationFunction']);
-        add_action('init', [$this, 'initialize']);
+        add_action('init', [$this, 'defineCustomPayPermalink']);
         add_action('admin_init', [$this, 'checkMissingDependencies']);
+        add_action('admin_init', [$this, 'enqueueGlobalScripts']);
         add_action('admin_init', [$this, 'desactivationFunction']);
         add_action('plugin_action_links', [$this, 'setSettingsLink'], 10, 2);
+        add_action('init', [$this, 'initialize'], 999);
         //add_action('template_redirect', [$this, 'customPayCheckout']);
 
         $this->loadServices();
@@ -42,9 +47,6 @@ final class Boot
 		load_textdomain( wcplConfig()->pluginSlug(), wcplConfig()->dynamicDir() . "/languages/" . wcplConfig()->pluginSlug() . "-$locale.mo" );
 		load_plugin_textdomain( wcplConfig()->pluginSlug(), false, wcplConfig()->dynamicDir() . '/languages/' );
         load_plugin_textdomain(wcplConfig()->pluginSlug(), false);
-
-        $this->defineCustomPayPermalink();
-        $this->enqueueGlobalScripts();
     }
 
     public function defineCustomPayPermalink(): void
@@ -61,26 +63,9 @@ final class Boot
         }
     }
 
-    public function createAdminMenu(): void
-    {
-        if (empty(self::getMissingDependencies())) {
-            $menus = new Menus();
-            $menus->initializeMenus();
-        }
-    }
-
-    public function woocommerce(): void
-    {
-        if (class_exists('WooCommerce')) {
-            $woocommerce = new WooCommerce;
-            $woocommerce->inicializeWooommerce();
-        }
-    }
-
     public function setSettingsLink(array $arr, string $name): array
     {
-        if ($name === wcplConfig()->baseFile()) {
-
+        if ($name === wcplConfig()->baseFile() && empty(self::getMissingDependencies())) {
             $label = sprintf(
                 '<a href="admin.php?page=wc-payment-links-links" id="deactivate-wc-payment-links" aria-label="%s">%s</a>',
                 __('Links', 'wc-payment-links'),
@@ -96,7 +81,7 @@ final class Boot
     public function activationFunction(string $plugin): void
     {
         if (wcplConfig()->baseFile() === $plugin) {
-            $boot = new \WCPaymentLink\Infrastructure\Bootstrap();
+            $boot = new \WCPaymentLink\Core\Database();
             $boot->initialize();
         }
     }
@@ -114,7 +99,7 @@ final class Boot
         $action = filter_var($_REQUEST['action'], FILTER_SANITIZE_SPECIAL_CHARS);
         $plugin = filter_var($_REQUEST['plugin'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-        if ($action === 'deactivate' && $plugin === dashboardConfig()->baseFile()) {
+        if ($action === 'deactivate' && $plugin === wcplConfig()->baseFile()) {
             $uninstall = new Uninstall();
             $uninstall->reset();
         }
@@ -166,12 +151,6 @@ final class Boot
             esc_html($message),
             esc_html(implode(', ', $keys))
         );
-    }
-
-    public function registerRestAPI(): void
-    {
-        $routes = new Routes();
-        $routes->register();
     }
 
     public function customPayCheckout(): void

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace WCPaymentLink\Controllers\Menus;
+namespace WCPaymentLink\Domain\Menus;
 
 use WCPaymentLink\Model\LinkModel;
-use WCPaymentLink\Repository\LinkRepository;
-use WCPaymentLink\Services\WooCommerce\Logs\Logger;
+use WCPaymentLink\Persistence\Repositories\LinkRepository;
+use WCPaymentLink\Integrations\WooCommerce\Logs\Logger;
 use WP_Query;
 
 final class Links
@@ -107,7 +107,7 @@ final class Links
             $link = new LinkModel();
             $link->setId($linkId);
 
-            $data = $this->linkRepository->remove($link);
+            $data = $this->linkRepository->deleteLink($link);
 
             if (!$data) {
                 $this->fields['errors'] = [ __('Error message', 'wc-payment-links')];

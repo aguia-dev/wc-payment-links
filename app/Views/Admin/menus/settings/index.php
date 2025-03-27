@@ -11,7 +11,7 @@
 <div class="wrap wpl-wrap px-8">
     <div class="my-4 flex align-middle">
         <h1 id="table-desc" class="text-3xl"><?php echo esc_html__('Payment Links', 'wc-payment-links'); ?></h1>
-        <button id="add-payment-link" class="ml-4 p-8 pt-1 pb-1 bg-blue-600 text-white rounded justify-center hover:bg-[#316beb] cursor-pointer shadow-md">
+        <button id="add-payment-link" class="ml-4 p-8 pt-1 pb-1 bg-blue-600 !text-sm text-white rounded justify-center hover:bg-[#316beb] cursor-pointer shadow-md">
             <?php echo esc_html__('New payment link', 'wc-payment-links'); ?>
         </button>
     </div>
@@ -42,7 +42,7 @@
             <tr>
                 <th scope="col" class="px-6 py-3">
                     <div>
-                        <a class="flex items-center cursor-pointer order-table" data-order="name">
+                        <a class="flex items-center cursor-pointer !no-underline order-table" data-order="name">
                             <?php echo esc_html__('Link Name', 'wc-payment-links'); ?>
                             <i class="fa-solid fa-sort w-4 h-3 ml-1.5"></i>
                         </a>
@@ -50,7 +50,7 @@
                 </th>
                 <th scope="col" class="px-6 py-3">
                     <div>
-                        <a class="flex items-center cursor-pointer order-table" data-order="expire_at">
+                        <a class="flex items-center cursor-pointer !no-underline order-table" data-order="expire_at">
                             <?php echo esc_html__('Expire at', 'wc-payment-links'); ?>
                             <i class="fa-solid fa-sort w-4 h-3 ml-1.5"></i>
                         </a>
@@ -58,7 +58,7 @@
                 </th>
                 <th scope="col" class="px-6 py-3">
                     <div>
-                        <a class="flex items-center cursor-pointer order-table" data-order="token">
+                        <a class="flex items-center cursor-pointer !no-underline order-table" data-order="token">
                             <?php echo esc_html__('Token', 'wc-payment-links'); ?>
                             <i class="fa-solid fa-sort w-4 h-3 ml-1.5"></i>
                         </a>
@@ -66,21 +66,21 @@
                 </th>
                 <th scope="col" class="px-6 py-3">
                     <div>
-                        <a class="flex items-center cursor-pointer">
+                        <a class="flex items-center !no-underline cursor-pointer">
                             <?php echo esc_html__('Products', 'wc-payment-links'); ?>
                         </a>
                     </div>
                 </th>
                 <th scope="col" class="px-6 py-3">
                     <div>
-                        <a class="flex items-center cursor-pointer">
+                        <a class="flex items-center cursor-pointer !no-underline">
                             <?php echo esc_html__('Cart Total', 'wc-payment-links'); ?>
                         </a>
                     </div>
                 </th>
                 <th scope="col" class="px-6 py-3">
                     <div>
-                        <a class="flex items-center cursor-pointer">
+                        <a class="flex items-center cursor-pointer !no-underline">
                             <?php echo esc_html__('Actions', 'wc-payment-links'); ?>
                         </a>
                     </div>
@@ -97,7 +97,7 @@
                         <?php echo esc_html($link->getExpireAt()->format('d/m/Y - H:i')) ?>
                     </td>
                     <td class="px-6 py-4">
-                        <a href="<?php echo esc_url($link->getLinkUrl()); ?>" target="_blank" class="text-blue-400"><?php echo esc_html($link->getToken()) ?></a>
+                        <a href="<?php echo esc_url($link->getLinkUrl()); ?>" target="_blank" class="!text-blue-400 !no-underline"><?php echo esc_html($link->getToken()) ?></a>
                     </td>
                     <td class="px-6 py-4">
                         <?php echo esc_html(count($link->getProducts())) ?>
@@ -106,11 +106,11 @@
                         <?php echo wc_price($link->getCartTotal()); ?>
                     </td>
                     <td class="px-6 py-4 flex gap-2">
-                        <a class="copy-element font-medium text-blue-950 no-underline hover:text-blue-600 hover:cursor-pointer"data-copy="<?php echo esc_url($link->getLinkUrl()); ?>">
+                        <a class="copy-element font-medium text-blue-950 !no-underline hover:text-blue-600 hover:cursor-pointer"data-copy="<?php echo esc_url($link->getLinkUrl()); ?>">
                             <i class="fa-solid fa-copy"></i>
                         </a>
                         <span>|</span>
-                        <a class="open-link-form font-medium text-black no-underline hover:text-black-800 hover:cursor-pointer" data-link='<?php echo esc_attr(json_encode($link->getData())); ?>'>
+                        <a class="open-link-form font-medium text-black !no-underline hover:text-black-800 hover:cursor-pointer" data-link='<?php echo esc_attr(json_encode($link->getData())); ?>'>
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                         <span>|</span>
@@ -118,7 +118,7 @@
                             <input type="hidden" name="action" value="remove"/>
                             <input type="hidden" value="wc-payment-links-settings" name="page"/>
                             <input type="hidden" name="link" value="<?php echo esc_attr($link->getId()); ?>"/>
-                            <button class="font-medium text-red-800 no-underline hover:text-red-600 hover:cursor-pointer">
+                            <button class="font-medium text-red-800 !no-underline hover:text-red-600 hover:cursor-pointer">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </form>
