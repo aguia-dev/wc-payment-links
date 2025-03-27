@@ -7,7 +7,7 @@ namespace WCPaymentLink\Domain\Routes\Abstractions;
 use Exception;
 use Throwable;
 
-abstract class Route
+abstract class AbstractRoute
 {
 	private string $namespace;
 

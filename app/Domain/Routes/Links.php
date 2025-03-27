@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace WCPaymentLink\Domain\Routes;
 
 use DateTime;
-use WCPaymentLink\Domain\Routes\Abstractions\Route;
+use WCPaymentLink\Domain\Routes\Abstractions\AbstractRoute;
 use WCPaymentLink\Model\LinkModel;
 use WCPaymentLink\Persistence\Repository\LinkRepository;
 
-final class Links extends Route
+final class Links extends AbstractRoute
 {
     public function __construct()
     {
