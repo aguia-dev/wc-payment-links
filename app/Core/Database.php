@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace WCPaymentLink\Core;
 
+use WCPaymentLink\Persistence\Repositories\LinkRepository;
+use WCPaymentLink\Persistence\Repositories\ProductRepository;
+
 final class Database
 {
 	public array $tables;

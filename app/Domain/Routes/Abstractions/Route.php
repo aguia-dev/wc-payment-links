@@ -54,6 +54,7 @@ abstract class Route
         }
 	}
 
+	//TODO improve this authentication
 	protected function validateAuthentication(array $headers): void
 	{
 		$logged = false;

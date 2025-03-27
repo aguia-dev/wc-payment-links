@@ -20,7 +20,7 @@ final class Menus implements InterfaceService
     private function defineMenus(): array
     {
         return [
-            ['Links', __('Payment Links', 'wc-payment-links')]
+            ['Settings', __('Payment Links', 'wc-payment-links')]
         ];
     }
 

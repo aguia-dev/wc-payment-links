@@ -68,7 +68,11 @@ class LinkModel extends AbstractModel
     private function setProducts(bool $force = false): void
     {
         if (empty($this->products) || $force) {
-            $this->products = $this->productRepository->getLinkProducts($this->id ?? 0);
+            try {
+                $this->products = $this->productRepository->getLinkProducts($this->id ?: 0);
+            } catch (\Throwable $th) {
+                $this->products = [];
+            }
         }
     }
 

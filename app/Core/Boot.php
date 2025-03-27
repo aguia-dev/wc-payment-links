@@ -58,7 +58,7 @@ final class Boot
 
     public function enqueueGlobalScripts(): void
     {
-        if(isset($_REQUEST['page']) && $_REQUEST['page'] === 'wc-payment-links-links') {
+        if(isset($_REQUEST['page']) && $_REQUEST['page'] === 'wc-payment-links-settings') {
             wp_enqueue_script(
                 'wc-payment-links-settings',
                 wcplConfig()->distUrl('scripts/admin/menus/settings/index.js'),
@@ -74,7 +74,7 @@ final class Boot
     {
         if ($name === wcplConfig()->baseFile() && empty(self::getMissingDependencies())) {
             $label = sprintf(
-                '<a href="admin.php?page=wc-payment-links-links" id="deactivate-wc-payment-links" aria-label="%s">%s</a>',
+                '<a href="admin.php?page=wc-payment-links-settings" id="deactivate-wc-payment-links" aria-label="%s">%s</a>',
                 __('Links', 'wc-payment-links'),
                 __('Links', 'wc-payment-links')
             );

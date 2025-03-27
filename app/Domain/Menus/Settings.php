@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace WCPaymentLink\Domain\Menus;
 
-use WCPaymentLink\Model\LinkModel;
+use WCPaymentLink\Persistence\Models\LinkModel;
 use WCPaymentLink\Persistence\Repositories\LinkRepository;
 use WCPaymentLink\Integrations\WooCommerce\Logs\Logger;
 use WP_Query;
 
-final class Links
+final class Settings
 {
     private array $fields = [];
     private Logger $logger;
@@ -25,7 +25,7 @@ final class Links
 
     private function handleActions(): void
     {
-        $page = filter_input( INPUT_POST, 'page', FILTER_SANITIZE_SPECIAL_CHARS );
+        $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS);
         $action = filter_input( INPUT_POST, 'action', FILTER_SANITIZE_SPECIAL_CHARS );
 
         if ($page != 'wc-payment-links-settings') {
@@ -44,7 +44,7 @@ final class Links
     private function saveLink(): void
     {
         try {
-            $page = filter_input( INPUT_POST, 'page', FILTER_SANITIZE_SPECIAL_CHARS );
+            $page = filter_input(INPUT_POST, 'page', FILTER_SANITIZE_SPECIAL_CHARS);
 
             $fields = $this->getPostFields();
             $errors = $this->validateFields($fields);
@@ -56,7 +56,7 @@ final class Links
 
             $date = new \DateTime($fields['expire_at']);
             $date->setTime(
-                $fields['hour'] ?? 0,
+                $fields['hour'] ?: 0,
                 0
             );
 
@@ -67,7 +67,7 @@ final class Links
                 $fields['coupon'],
             );
 
-            $link->setId($fields['link_id'] ?? 0);
+            $link->setId($fields['link_id'] ?: 0);
             $products = json_decode(html_entity_decode($fields['products'])) ?? [];
             $linkId = $this->linkRepository->save($link);
 
@@ -85,7 +85,7 @@ final class Links
 
                 wp_redirect(admin_url("admin.php?page={$page}"));
             }
-
+            exit;
         } catch (\Exception $e) {
             $this->fields['errors'] = [__('Error message', 'wc-payment-links')];
 
@@ -213,7 +213,7 @@ final class Links
         $this->getProducts();
         $this->getLinks();
 
+        //TODO handle error messages on settings page
         echo wcplUtils()->render('Admin/menus/settings/index.php', $this->fields);
-        exit;
     }
 }
