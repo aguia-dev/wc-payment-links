@@ -5,7 +5,9 @@
 
  if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
-<title><?php echo esc_html(get_the_title());?></title>
+
+<title><?php the_title(); ?></title>
+
 <?php get_header(); ?>
 
 <div>
