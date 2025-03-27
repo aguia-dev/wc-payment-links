@@ -59,7 +59,14 @@ final class Boot
     public function enqueueGlobalScripts(): void
     {
         if(isset($_REQUEST['page']) && $_REQUEST['page'] === 'wc-payment-links-links') {
-            wp_enqueue_style('tailwind-css', wcplConfig()->distUrl('styles/app.css'), [], wcplConfig()->pluginVersion());
+            wp_enqueue_script(
+                'wc-payment-links-settings',
+                wcplConfig()->distUrl('scripts/admin/menus/settings/index.js'),
+                [],
+                wcplConfig()->pluginVersion()
+            );
+
+            wp_enqueue_style('wc-payment-links-tailwind-css', wcplConfig()->distUrl('styles/app.css'), [], wcplConfig()->pluginVersion());
         }
     }
 

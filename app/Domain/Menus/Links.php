@@ -165,12 +165,8 @@ final class Links
 
         return $errors;
     }
-    public function enqueue(): void
-    {
-        wp_enqueue_scripts('wc-payment-links-settings', wcplConfig()->distUrl('scripts/admin/menus/settings/index.js'), [], wcplConfig()->pluginVersion());
-    }
 
-    public function getProducts(): void
+    private function getProducts(): void
     {
         $this->fields['products'] = [];
 
@@ -214,10 +210,10 @@ final class Links
 
     public function request(): void
     {
-        $this->enqueue();
         $this->getProducts();
         $this->getLinks();
 
         echo wcplUtils()->render('Admin/menus/settings/index.php', $this->fields);
+        exit;
     }
 }
